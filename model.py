@@ -1,7 +1,7 @@
 """Models for Wishblaster."""
 
 from flask_sqlalchemy import flask_sqlalchemy
-
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -32,7 +32,7 @@ class Family(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     full_name = db.Column(db.String)
     birth_date = db.Column(db.Datetime)
-    relationship_to_user = db.Column(db.Integer)
+    relationship_to_user = db.Column(db.Integer, dbForeignKey('relationships.relationship_id'))
     image_upload =db.Column(db.String)
 
     def __repr__(self):
@@ -51,3 +51,60 @@ class Milestones(db.Model):
     def __repr__(self):
         return f'<Milestones milestone_id ={self.milestone_id} milestone_name={self.milestone_name}>'
 
+class Relationships(db.Model):
+    """Relationships table."""
+    __tablename__ = "relationships"
+
+    relationship_id = db.Column(db.Integer
+                                primary_key=True
+                                autoincrement=True)
+    relationship_name = db.Column(db.String)
+
+    def __repr__(self):
+        return f'<Relationships relationship_id ={self.relationship_id} relationship_name={self.relationship_name}>'
+
+class Wishlists(db.Model):
+    """Wishlists table"""
+
+    __tablename__ = "wishlists"
+
+    wishlist_id = db.Column(db.Integer
+                            pirmary_key=True
+                            autoincrement=True)
+    wishlist_name = db.Column(db.String)
+    family_id = db.Column(db.Integer, db.ForeignKey'family.family_id')
+
+    def __repr__(self):
+        return f'<Wishlists wishlist_id ={self.wishlist_id} wishlist_name ={self.wishlist_name}>'
+
+class Items(db.Model):
+    """Items on wishlist table"""
+
+    __tablename__ = "items"
+
+    item_id = db.Column(db.Integer
+                        primary_key=True
+                        autoincrement=True)
+    wishlist_id = db.Column(db.Integer, ForeignKey('wishlists.wishlist_id'))
+    item_name = db.Column(db.String)
+    item_link = db.Column(db.String)
+
+    #find out what backref stuff goes here 
+                                
+    def __repr__(self):
+        return f'<Items item_id ={self.item_id} item_name={self.item_name}>'
+
+def connect_to_db(flask_app, db_uri='postgresql:///Wishblaster', echo=True):
+    flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+    flask_app.config['SQLALCHEMY_DATABASE_ECHO'] = echo
+    flask_app.config['SQLALCHEMY_DATABASE_TRACK_MODIFICATIONS'] = False
+
+    db.app = flask_app
+    db.init_app(flask_app)
+
+    print('Connect to Wishblaster db!')
+
+if __name__ == '__main__':
+    from server import app
+
+    connect_to_db(app)
