@@ -1,6 +1,6 @@
 """Models for Wishblaster."""
 
-from flask_sqlalchemy import flask_sqlalchemy
+from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 db = SQLAlchemy()
@@ -22,7 +22,7 @@ class User(db.Model):
 
 
 class Family(db.Model):
-   """Family members table."""
+    """Family members table."""
     __tablename__ = "family"
 
     family_id = db.Column(db.Integer,
@@ -31,21 +31,23 @@ class Family(db.Model):
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     full_name = db.Column(db.String)
-    birth_date = db.Column(db.Datetime)
-    relationship_to_user = db.Column(db.Integer, dbForeignKey('relationships.relationship_id'))
+    birth_date = db.Column(db.DateTime)
+    relationship_to_user = db.Column(db.Integer, db.ForeignKey('relationships.relationship_id'))
     image_upload =db.Column(db.String)
 
     def __repr__(self):
         return f'<Family family_id ={self.family_id} full_name={self.full_name}>'
 
-class Milestones(db.Model):
+class Milestone(db.Model):
     """Family Milestones table."""
     __tablename__ = "milestones"
 
-    milestone_id = db.Column(db.String
-                            unique = True)
+    milestone_id = db.Column(db.Integer,
+                             autoincrement = True,
+                             primary_key = True)
+                            
     milestone_name = db.Column(db.String)
-    milestone_date = db.Column(db.Datetime)
+    milestone_date = db.Column(db.DateTime)
     family_id = db.Integer, db.ForeignKey('family.family_id')
 
     def __repr__(self):
@@ -55,37 +57,37 @@ class Relationships(db.Model):
     """Relationships table."""
     __tablename__ = "relationships"
 
-    relationship_id = db.Column(db.Integer
-                                primary_key=True
-                                autoincrement=True)
+    relationship_id = db.Column(db.Integer,
+                                autoincrement=True,
+                                primary_key=True)
     relationship_name = db.Column(db.String)
 
     def __repr__(self):
         return f'<Relationships relationship_id ={self.relationship_id} relationship_name={self.relationship_name}>'
 
-class Wishlists(db.Model):
+class Wishlist(db.Model):
     """Wishlists table"""
 
     __tablename__ = "wishlists"
 
-    wishlist_id = db.Column(db.Integer
-                            pirmary_key=True
+    wishlist_id = db.Column(db.Integer,
+                            primary_key=True,
                             autoincrement=True)
     wishlist_name = db.Column(db.String)
-    family_id = db.Column(db.Integer, db.ForeignKey'family.family_id')
+    family_id = db.Column(db.Integer, db.ForeignKey('family.family_id'))
 
     def __repr__(self):
         return f'<Wishlists wishlist_id ={self.wishlist_id} wishlist_name ={self.wishlist_name}>'
 
-class Items(db.Model):
+class Item(db.Model):
     """Items on wishlist table"""
 
     __tablename__ = "items"
 
-    item_id = db.Column(db.Integer
-                        primary_key=True
+    item_id = db.Column(db.Integer,
+                        primary_key=True,
                         autoincrement=True)
-    wishlist_id = db.Column(db.Integer, ForeignKey('wishlists.wishlist_id'))
+    wishlist_id = db.Column(db.Integer, db.ForeignKey('wishlists.wishlist_id'))
     item_name = db.Column(db.String)
     item_link = db.Column(db.String)
 
