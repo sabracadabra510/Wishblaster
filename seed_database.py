@@ -7,4 +7,5 @@ import crud
 import model
 import server
 
-os.system('dropdb ratings')
+os.system('dropdb User')
+os.system('createdb User')

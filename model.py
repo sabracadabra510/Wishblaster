@@ -53,7 +53,7 @@ class Milestone(db.Model):
     def __repr__(self):
         return f'<Milestones milestone_id ={self.milestone_id} milestone_name={self.milestone_name}>'
 
-class Relationships(db.Model):
+class Relationship(db.Model):
     """Relationships table."""
     __tablename__ = "relationships"
 
@@ -63,7 +63,7 @@ class Relationships(db.Model):
     relationship_name = db.Column(db.String)
 
     def __repr__(self):
-        return f'<Relationships relationship_id ={self.relationship_id} relationship_name={self.relationship_name}>'
+        return f'<Relationship relationship_id ={self.relationship_id} relationship_name={self.relationship_name}>'
 
 class Wishlist(db.Model):
     """Wishlists table"""
