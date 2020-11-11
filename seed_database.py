@@ -37,3 +37,24 @@ for user in users:
     family_members.append(family_member)
 for family_member in family_members:
     print(family_member.full_name, family_member.birth_date, family_member.relationship_to_user)
+
+
+milestones = []
+
+for milestone in milestones:
+    #TODO check to see how to bring in fake date from Faker 
+    milestone = crud.create_milestone(milestone_name, user.user_id, fake.)
+
+wishlists = []
+
+for wishlist in wishlists:
+    wishlist = crud.create_wishlist(wishlist_name, family.family_id)
+    wishlist.append(wishlist)
+
+
+items = []
+
+for item in items:
+    #TODO check to see if I can bring in fake items from Faker 
+    item = crud.create_item(wishlist.wishlist_id, item_name, item_link)
+    items.append(item)
