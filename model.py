@@ -96,7 +96,7 @@ class Item(db.Model):
     def __repr__(self):
         return f'<Items item_id ={self.item_id} item_name={self.item_name}>'
 
-def connect_to_db(flask_app, db_uri='postgresql:///Wishblaster', echo=True):
+def connect_to_db(flask_app, db_uri='postgresql:///wishblaster', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     flask_app.config['SQLALCHEMY_DATABASE_ECHO'] = echo
     flask_app.config['SQLALCHEMY_DATABASE_TRACK_MODIFICATIONS'] = False
