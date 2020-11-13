@@ -13,8 +13,14 @@ app.jinja_env.undefined = StrictUndefined
 # Replace this with routes and view functions!
 
 @app.route('/')
+def homepage():
+    """Homepage"""
+
+    return render_template("homepage.html")
+
+@app.route('/login')
 def view_login_page():
-    """View login page"""
+    """Enter login page"""
 
     return render_template("login.html")
 
@@ -27,10 +33,14 @@ def show_welcome_page():
 @app.route('/create_account')
 def create_user_account():
     """create user account"""
+    user = request.form.get("user")
+    email = request.form.get("email")
+    password = request.form.get("password")
+    password2 = request.form.get("password")
     
     return render_template("create_account.html")
 
-@app.route('create_family')
+@app.route('/create_family')
 def create_family():
     """add a family member to your family"""
 
@@ -58,10 +68,13 @@ def search_for_user():
 def add_to_wishlist():
     """add items to wishlist"""
 
-    return render_template('/add_to_wishlist.html')
+    return render_template('add_to_wishlist.html')
 
 @app.route('/upcoming_milestones')
 def view_upcoming_milestones():
     """allows user to view a list of upcoming events"""
 
     return render_template("upcoming_milstones.html")
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True)

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Welcome to Wishblaster{% endblock %}
+
+{% block body %}
+  <h1>Hey, {{name}}!</h1>
+
+  <h2>What would you like to do today?</h2>
+  <ul>
+    <li><a href="/user_profile">View Your Profile</a></li>
+    <li><a href="/search_for_user">Search For a User</a></li>
+    <li><a href="/upcoming_milestones">View Your Family's Upcoming Events</a></li>
+  </ul>
+{% endblock %}

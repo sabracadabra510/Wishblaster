@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Welcome to Wishblaster{% endblock %}
+
+{% block body %}
+  <h1>Add Family Members, Starting with You!</h1>
+
+  <form action="/create_account" method="POST">
+    What is your name? 
+    <input type="text" name="user">
+    What is your birthdate?
+    <input type="text" name="email">
+    Relationship to User? 
+    <select name="relationship_to_user">
+        <option value="self">Self</option>
+        <option value="dad">Dad</option>
+        <option value="mom">Mom</option>
+        <option value="brother">Brother</option>
+    </select>
+    Re-enter password:
+    <input type="text" name= "password2">
+    <input type="submit">
+  </form>
+{% endblock %}

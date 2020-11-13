@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Welcome to Wishblaster{% endblock %}
+
+{% block body %}
+  <h1>Create User Account</h1>
+
+  <form action="/create_account" method="POST">
+    What is your name? 
+    <input type="text" name="user">
+    What is your email address?
+    <input type="text" name="email">
+    Choose a password:
+    <input type="text" name="password">
+    Re-enter password:
+    <input type="text" name= "password2">
+    <input type="submit">
+  </form>
+{% endblock %}
