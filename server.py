@@ -21,7 +21,9 @@ def homepage():
 @app.route('/login')
 def view_login_page():
     """Enter login page"""
-
+    user_name = request.form.get("user_login")
+    password = request.form.get("password")
+    
     return render_template("login.html")
 
 @app.route('/welcome_page')
@@ -37,7 +39,7 @@ def create_user_account():
     email = request.form.get("email")
     password = request.form.get("password")
     password2 = request.form.get("password")
-    
+
     return render_template("create_account.html")
 
 @app.route('/create_family')

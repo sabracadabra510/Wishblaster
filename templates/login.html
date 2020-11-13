@@ -2,11 +2,13 @@
 {% block title %}Welcome to Wishblaster{% endblock %}
 
 {% block body %}
-  <h1>Welcome to Wishblaster!</h1>
+  <h1>Please enter your login information. </h1>
 
-  <h2>What would you like to do today?</h2>
-  <ul>
-    <li><a href="/login">Login to Your Account!</a></li>
-    <li><a href="/create account">Create a Wishblaster Account!</a></li>
-  </ul>
+  <form action="/login" method="POST">
+    Please enter your email address: 
+    <input type="text" name="user_login">
+    Please enter your password:
+    <input type="text" name="password">
+    <input type="submit">
+  </form>
 {% endblock %}
