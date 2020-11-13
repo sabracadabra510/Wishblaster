@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import (Flask, render_template, request, flash, session,
-                   redirect)
-from model import connect_to_db
+                   redirect, url_for)
+from model import connect_to_db, User, Milestone, Family, Relationship, Wishlist, Item
 import crud
 from jinja2 import StrictUndefined
 
@@ -23,7 +23,7 @@ def view_login_page():
     """Enter login page"""
     user_name = request.form.get("user_login")
     password = request.form.get("password")
-    
+
     return render_template("login.html")
 
 @app.route('/welcome_page')
@@ -32,14 +32,32 @@ def show_welcome_page():
     
     return render_template("welcome_page.html")
 
-@app.route('/create_account')
+@app.route('/create_account', methods=['GET', 'POST'])
 def create_user_account():
     """create user account"""
-    user = request.form.get("user")
-    email = request.form.get("email")
-    password = request.form.get("password")
-    password2 = request.form.get("password")
+    if request.method == 'POST':
+        full_name = request.form.get("full_name")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        password2 = request.form.get("password2")
+        print(full_name,email,password,password2)
 
+        user = User.query.filter_by(email=email).first()
+        if user: 
+            return redirect(url_for('view_login_page'))
+
+        if password == password2: 
+            user = crud.create_user(email, password, full_name)
+            print("This is working")
+            session["user_id"] = user.user_id
+            return redirect(url_for('create_family'))
+
+        elif password != password2:
+            flash("Passwords do not match!")
+            print("This is also working")
+            return redirect(url_for('create_user_account'))
+
+        print("help!")
     return render_template("create_account.html")
 
 @app.route('/create_family')
@@ -79,4 +97,6 @@ def view_upcoming_milestones():
     return render_template("upcoming_milstones.html")
 
 if __name__ == '__main__':
+    connect_to_db(app)
+
     app.run(host='0.0.0.0', debug=True)
