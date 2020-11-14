@@ -41,9 +41,11 @@ for family_member in family_members:
 
 milestones = []
 
-for milestone in milestones:
-    #TODO check to see how to bring in fake date from Faker 
-    milestone = crud.create_milestone(milestone_name, user.user_id, fake.)
+for milestone_name in ['Christmas', 'birthday', 'anniversary']:
+    for family in family_members:
+        milestone = crud.create_milestone(milestone_name, datetime.now(), family.family_id)
+        print(milestone.milestone_name, milestone.milestone_date, milestone.family_id)
+    
 
 wishlists = []
 
