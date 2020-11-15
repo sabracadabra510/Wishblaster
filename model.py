@@ -33,6 +33,7 @@ class Family(db.Model):
     full_name = db.Column(db.String)
     birth_date = db.Column(db.DateTime)
     relationship_to_user = db.Column(db.Integer, db.ForeignKey('relationships.relationship_id'))
+    relationship_model = db.relationship("Relationship")
     image_upload =db.Column(db.String)
 
     def __repr__(self):
