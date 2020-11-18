@@ -18,12 +18,21 @@ def homepage():
 
     return render_template("homepage.html")
 
-@app.route('/login')
+@app.route('/login', methods =['GET', 'POST'])
 def view_login_page():
     """Enter login page"""
-    user_name = request.form.get("user_login")
-    password = request.form.get("password")
+    if request.method == 'POST':
+        email = request.form.get("user_login")
+        password = request.form.get("password")
 
+        user = User.query.filter_by(email=email).first()
+        if user and user.password == password:
+            session['user_id'] = user.user_id
+            print("This works!")
+            return redirect(url_for('show_welcome_page'))
+        print("this does not work!")
+        return redirect(url_for('view_login_page'))
+    
     return render_template("login.html")
 
 @app.route('/welcome_page')

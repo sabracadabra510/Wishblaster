@@ -49,7 +49,6 @@ for milestone_name in ['Christmas', 'birthday', 'anniversary']:
     
 
 wishlists = []
-#wishlist_name = 'Sabrina Wishlist'
 for family in family_members:
     wishlist_name = family.relationship_model.relationship_name
     wishlist = crud.create_wishlist(wishlist_name, family.family_id)
@@ -60,6 +59,8 @@ for family in family_members:
 items = []
 
 for item in items:
-    #TODO check to see if I can bring in fake items from Faker 
+    item_name = "sabrina"
+    print(item_name)
     item = crud.create_item(wishlist.wishlist_id, item_name, item_link)
     items.append(item)
+    
