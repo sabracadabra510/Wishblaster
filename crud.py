@@ -29,6 +29,10 @@ def create_milestone(milestone_name,milestone_date, family_id):
 
     return milestone
 
+def get_milestones():
+
+    return Milestone.query.all()
+
 def create_relationship(relationship_name):
 
     relationship = Relationship(relationship_name=relationship_name)

@@ -77,12 +77,19 @@ def create_family():
         birth_date = request.form.get("birth_date")  
         relationship_to_user = request.form.get("relationship_to_user")  
         image_upload = request.form.get("fileToUpload")
-
+        print("This is working!")
         family_member = crud.create_family_member(full_name, birth_date, relationship_to_user, image_upload)
         
-        # if family_member and 
+        if family_member:
+            return redirect(url_for('complete_create_family'))
 
     return render_template("create_family.html")
+
+@app.route('/complete_family')
+def complete_create_family():
+    """complete adding members to family"""
+
+    return render_template('complete_family.html')
 
 @app.route('/user_profile')
 def view_user_profile():
@@ -111,8 +118,9 @@ def add_to_wishlist():
 @app.route('/upcoming_milestones')
 def view_upcoming_milestones():
     """allows user to view a list of upcoming events"""
+    milestones = crud.get_milestones()
 
-    return render_template("upcoming_milstones.html")
+    return render_template("upcoming_milestones.html", milestones = milestones)
 
 if __name__ == '__main__':
     connect_to_db(app)
