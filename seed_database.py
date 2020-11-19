@@ -58,8 +58,9 @@ for family in family_members:
 
 items = []
 
-for item in items:
-    item_name = "sabrina"
+for wishlist in wishlists:
+    item_name = "clothes"
+    item_link = "stuff"
     print(item_name)
     item = crud.create_item(wishlist.wishlist_id, item_name, item_link)
     items.append(item)

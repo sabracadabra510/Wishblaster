@@ -69,9 +69,18 @@ def create_user_account():
         print("help!")
     return render_template("create_account.html")
 
-@app.route('/create_family')
+@app.route('/create_family', methods=['GET', 'POST'])
 def create_family():
     """add a family member to your family"""
+    if request.method == 'POST':
+        full_name = request.form.get("user") 
+        birth_date = request.form.get("birth_date")  
+        relationship_to_user = request.form.get("relationship_to_user")  
+        image_upload = request.form.get("fileToUpload")
+
+        family_member = crud.create_family_member(full_name, birth_date, relationship_to_user, image_upload)
+        
+        # if family_member and 
 
     return render_template("create_family.html")
 
