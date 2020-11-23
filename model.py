@@ -14,8 +14,15 @@ class User(db.Model):
                         autoincrement = True,
                         primary_key = True)
     full_name = db.Column(db.String)
-    email = db.Column(db.String, unique = True)
-    password = db.Column(db.String)
+    email = db.Column(db.String, unique = True, nullable=True)
+    password = db.Column(db.String, nullable=True)
+
+    #family_id = db.relationship("Family")
+    # Racine family ID: 6
+
+    #Lucia: user_id = 4
+    # family = User.family_id
+    # brother = User.family_id.relationship_model.relationship_name
 
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email}>'
@@ -33,8 +40,11 @@ class Family(db.Model):
     full_name = db.Column(db.String)
     birth_date = db.Column(db.DateTime)
     relationship_to_user = db.Column(db.Integer, db.ForeignKey('relationships.relationship_id'))
+
     relationship_model = db.relationship("Relationship")
     image_upload =db.Column(db.String)
+
+    #user_id = db.relationship("User")
 
     def __repr__(self):
         return f'<Family family_id ={self.family_id} full_name={self.full_name}>'

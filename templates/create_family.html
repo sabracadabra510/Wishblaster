@@ -4,7 +4,7 @@
 {% block body %}
   <h1>Add Family Members, Starting with You!</h1>
 
-  <form action="/create_account" method="POST">
+  <form action="/complete_family" method="POST">
     What is your name? 
     <input type="text" name="user">
     What is your birthdate?
@@ -28,12 +28,16 @@
         <option value="sister_in_law">Sister in Law</option>
         <option value="brother_in_law">Brother in Law</option>
      </select> 
-  </form>
+  
 
-  <form action="upload.php" method="POST" enctype="multipart/form-data"></form>
-    Select image to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload Image" name= "submit">
-    <input type="submit" value="Save">
+    <!-- <form action="upload.php" method="POST" enctype="multipart/form-data"></form>
+      Select image to upload:
+      <input type="file" name="fileToUpload" id="fileToUpload">
+      <input type="submit" value="Upload Image" name= "submit">
+      
+    </form>  -->
+
+  <input type="submit" value="Save">
   </form>
+  
 {% endblock %}

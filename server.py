@@ -28,10 +28,12 @@ def view_login_page():
         user = User.query.filter_by(email=email).first()
         if user and user.password == password:
             session['user_id'] = user.user_id
-            print("This works!")
+            print("here I am")
+            print(session['user_id'])
+            print("Stop!")
             return redirect(url_for('show_welcome_page'))
         print("this does not work!")
-        return redirect(url_for('view_login_page'))
+        return redirect(url_for('view_login_page')) 
     
     return render_template("login.html")
 
@@ -69,35 +71,60 @@ def create_user_account():
         print("help!")
     return render_template("create_account.html")
 
-@app.route('/create_family', methods=['GET', 'POST'])
-def create_family():
+@app.route('/complete_family', methods=['GET', 'POST'])
+def complete_family():
     """add a family member to your family"""
     if request.method == 'POST':
+        print("here I am")
+        print(session['user_id'])
+        print("Stop!")
+          
+        user_id = session['user_id']
         full_name = request.form.get("user") 
         birth_date = request.form.get("birth_date")  
-        relationship_to_user = request.form.get("relationship_to_user")  
+        relationship_to_user = request.form.get("relationship_to_user")
+        relationship = Relationship.query.filter(Relationship.relationship_name == relationship_to_user).first()
+        
+
         image_upload = request.form.get("fileToUpload")
         print("This is working!")
-        family_member = crud.create_family_member(full_name, birth_date, relationship_to_user, image_upload)
+        #create the user without an email/password
+        #user-obj = crud.create_non_user(full_name)
+        #user-obj_id = crud.get_user_by_id(user_obj)
+        family_member = crud.create_family_member(user_id, full_name, birth_date, relationship.relationship_id, image_upload)
+        #TODO, this leads to nowhere. Perhaps an issue with the html? 
         
         if family_member:
-            return redirect(url_for('complete_create_family'))
+            return render_template("complete_family.html")
 
     return render_template("create_family.html")
+    
 
-@app.route('/complete_family')
-def complete_create_family():
-    """complete adding members to family"""
 
-    return render_template('complete_family.html')
+############################################################
+# in your server: we can make post requests to recieve info from the HTML
+   # get user info, for example 'name'
+# crud.get_user_obj('name')
+# in your crud.py: 
+# def get_user_obj(name):
+    # return User.query.filter(name=name).first() 
 
-@app.route('/user_profile')
+# def get_family(user_id):
+    # user = User.query.filter(user_id = user_id) 
+    # return (family = user.family_id)
+# now in your server we have all attributes of the user object
+
+############################################################
+
+
+
+@app.route('/user_profile/<user_id>')
 def view_user_profile():
     """view user's profile page"""
 
     return render_template("user_profile.html")
 
-@app.route('/family_member_profile')
+@app.route('/family_member_profile/<family_id>')
 def view_family_profile():
     """view a family member's profile page"""
 
@@ -109,17 +136,19 @@ def search_for_user():
 
     return render_template("search_users.html")
 
-@app.route('/add_to_wishlist')
+
+@app.route('/add_to_wishlist/<wishlist_id>')
 def add_to_wishlist():
     """add items to wishlist"""
 
-    return render_template('add_to_wishlist.html')
+    return render_template('view_add_to_wishlist.html')
+
 
 @app.route('/upcoming_milestones')
 def view_upcoming_milestones():
     """allows user to view a list of upcoming events"""
     milestones = crud.get_milestones()
-
+    #TODO add proper templating to make this pretty and not objects 
     return render_template("upcoming_milestones.html", milestones = milestones)
 
 if __name__ == '__main__':

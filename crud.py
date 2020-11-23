@@ -11,6 +11,13 @@ def create_user(email, password, full_name):
 
     return user
 
+def create_non_user(full_name):
+    """Creates a user who can't login i.e. 4 year old niece"""
+
+    user = User(full_name)
+
+    return user
+
 def create_family_member(user_id, full_name, birth_date,relationship_to_user,image_upload):
     
     family_member = Family(user_id=user_id, full_name=full_name, birth_date=birth_date, relationship_to_user=relationship_to_user, image_upload=image_upload)
@@ -50,6 +57,10 @@ def create_wishlist(wishlist_name, family_id):
     db.session.commit()
 
     return wishlist
+
+def get_wishlist():
+
+    return Wishlist.query.all()
 
 def create_item(wishlist_id, item_name, item_link):
 
