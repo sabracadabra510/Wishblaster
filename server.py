@@ -71,6 +71,11 @@ def create_user_account():
         print("help!")
     return render_template("create_account.html")
 
+@app.route('/create_family')
+def create_family():
+
+    return render_template("create_family.html")
+
 @app.route('/complete_family', methods=['GET', 'POST'])
 def complete_family():
     """add a family member to your family"""
@@ -92,7 +97,7 @@ def complete_family():
         #user-obj = crud.create_non_user(full_name)
         #user-obj_id = crud.get_user_by_id(user_obj)
         family_member = crud.create_family_member(user_id, full_name, birth_date, relationship.relationship_id, image_upload)
-        #TODO, this leads to nowhere. Perhaps an issue with the html? 
+        
         
         if family_member:
             return render_template("complete_family.html")
@@ -118,7 +123,7 @@ def complete_family():
 
 
 
-@app.route('/user_profile/<user_id>')
+@app.route('/user_profile')
 def view_user_profile():
     """view user's profile page"""
 
@@ -135,6 +140,16 @@ def search_for_user():
     """search for a user"""
 
     return render_template("search_users.html")
+
+@app.route('/create_wishlist')
+def create_wishlist():
+    """allows user to create a wishlist"""
+
+    user = crud.get_user_by_user_id(session['user_id'])
+    print(user)
+
+    # crud.create_wishlist(wishlist_name=user.full_name, family_id=)
+    return render_template('login.html')
 
 
 @app.route('/add_to_wishlist/<wishlist_id>')

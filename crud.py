@@ -1,4 +1,4 @@
-from model import db, User, Family, Milestone, Relationship, Wishlist, Item, connect_to_db
+from model import db, User, Family,FamilyMember, Milestone, Relationship, Wishlist, Item, connect_to_db
 
 def create_user(email, password, full_name):
     """Create and return a new user."""
@@ -18,9 +18,20 @@ def create_non_user(full_name):
 
     return user
 
-def create_family_member(user_id, full_name, birth_date,relationship_to_user,image_upload):
+
+def create_family(surname):
+    """Create a family and return the family primary id."""
+
+    family = Family(surname=surname)
+    db.session.add(family)
+    db.session.commit()
+
+    return family
+
+
+def create_family_member(family_id, user_id, full_name, birth_date, relationship_to_user, image_upload):
     
-    family_member = Family(user_id=user_id, full_name=full_name, birth_date=birth_date, relationship_to_user=relationship_to_user, image_upload=image_upload)
+    family_member = FamilyMember(family_id=family_id, user_id=user_id, full_name=full_name, birth_date=birth_date, relationship_to_user=relationship_to_user, image_upload=image_upload)
     
     db.session.add(family_member)
     db.session.commit()
@@ -62,6 +73,10 @@ def get_wishlist():
 
     return Wishlist.query.all()
 
+def get_user_by_user_id(user_id):
+
+    return User.query.filter(User.user_id==user_id).first()
+
 def create_item(wishlist_id, item_name, item_link):
 
     item = Item(wishlist_id = wishlist_id, item_name = item_name, item_link= item_link)
@@ -70,6 +85,12 @@ def create_item(wishlist_id, item_name, item_link):
     db.session.commit()
 
     return item 
+
+
+# def get_family_members(family_id)
+
+#     return User_Family_Relationship.query.filterby(User_Family_Relationship.user_id=session[user_id] and User_Family_Relationship.family_id==family_id)  
+
 
 if __name__ == '__main__':
     from server import app

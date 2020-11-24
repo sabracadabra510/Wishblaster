@@ -17,6 +17,7 @@ class User(db.Model):
     email = db.Column(db.String, unique = True, nullable=True)
     password = db.Column(db.String, nullable=True)
 
+
     #family_id = db.relationship("Family")
     # Racine family ID: 6
 
@@ -29,13 +30,25 @@ class User(db.Model):
 
 
 class Family(db.Model):
-    """Family members table."""
+    """Family table"""
     __tablename__ = "family"
 
     family_id = db.Column(db.Integer,
                 autoincrement = True,
                 primary_key = True)
+    surname = db.Column(db.String)
 
+
+
+class FamilyMember(db.Model):
+    """Family members table."""
+    __tablename__ = "family_members"
+
+    family_member_id = db.Column(db.Integer,
+                autoincrement = True,
+                primary_key = True)
+
+    family_id = db.Column(db.Integer, db.ForeignKey('family.family_id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     full_name = db.Column(db.String)
     birth_date = db.Column(db.DateTime)

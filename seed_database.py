@@ -31,10 +31,18 @@ for relationship_name in ['self','son','daughter' ,'brother', 'sister', 'mom','d
     relationship = crud.create_relationship(relationship_name)
     relationships[relationship_name] = relationship
 
+
+for i in range(5):
+    family = crud.create_family(fake.last_name())
+    print('Families created:', family)
+
+
 family_members = []
+test_family_id = 1
 for user in users: 
-    #create for loop to create additional family members 
-    family_member = crud.create_family_member(user.user_id, user.full_name, fake.date_of_birth(), relationships['self'].relationship_id, '')
+    #create for loop to create additional family members
+    # Currently hard coding family id to be 1 for test purposes 
+    family_member = crud.create_family_member(test_family_id,user.user_id, user.full_name, fake.date_of_birth(), relationships['self'].relationship_id, '')
     family_members.append(family_member)
 for family_member in family_members:
     print(family_member.full_name, family_member.birth_date, family_member.relationship_to_user)
