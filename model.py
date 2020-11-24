@@ -97,7 +97,7 @@ class Wishlist(db.Model):
     wishlist_id = db.Column(db.Integer,
                             primary_key=True,
                             autoincrement=True)
-    wishlist_name = db.Column(db.String)
+    family_member_id = db.Column(db.Integer, db.ForeignKey('family_members.family_member_id'))
     family_id = db.Column(db.Integer, db.ForeignKey('family.family_id'))
 
     def __repr__(self):

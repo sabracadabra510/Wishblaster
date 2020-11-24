@@ -93,10 +93,15 @@ def complete_family():
 
         image_upload = request.form.get("fileToUpload")
         print("This is working!")
+
+        # Hardcoding family id to be 1 for test purposes
+        family_id = 1
+
+
         #create the user without an email/password
         #user-obj = crud.create_non_user(full_name)
         #user-obj_id = crud.get_user_by_id(user_obj)
-        family_member = crud.create_family_member(user_id, full_name, birth_date, relationship.relationship_id, image_upload)
+        family_member = crud.create_family_member(family_id,user_id, full_name, birth_date, relationship.relationship_id, image_upload='')
         
         
         if family_member:
