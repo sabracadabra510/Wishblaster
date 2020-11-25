@@ -60,9 +60,9 @@ def create_relationship(relationship_name):
 
     return relationship
 
-def create_wishlist(wishlist_name, family_id):
+def create_wishlist(family_member_id, family_id):
 
-    wishlist = Wishlist(wishlist_name = wishlist_name, family_id = family_id)
+    wishlist = Wishlist(family_member_id=family_member_id, family_id=family_id)
 
     db.session.add(wishlist)
     db.session.commit()
@@ -86,10 +86,16 @@ def create_item(wishlist_id, item_name, item_link):
 
     return item 
 
+def get_familyid_by_user_id(user_id):
 
-# def get_family_members(family_id)
+    current_user = FamilyMember.query.filter(FamilyMember.user_id==user_id).first()
 
-#     return User_Family_Relationship.query.filterby(User_Family_Relationship.user_id=session[user_id] and User_Family_Relationship.family_id==family_id)  
+    return current_user.family_id
+
+
+def get_family_members(family_id):
+
+    return FamilyMember.query.filter(FamilyMember.family_id==family_id).all() 
 
 
 if __name__ == '__main__':

@@ -88,6 +88,8 @@ def complete_family():
         full_name = request.form.get("user") 
         birth_date = request.form.get("birth_date")  
         relationship_to_user = request.form.get("relationship_to_user")
+        print("************", relationship_to_user)
+
         relationship = Relationship.query.filter(Relationship.relationship_name == relationship_to_user).first()
         
 
@@ -102,7 +104,13 @@ def complete_family():
         #user-obj = crud.create_non_user(full_name)
         #user-obj_id = crud.get_user_by_id(user_obj)
         family_member = crud.create_family_member(family_id,user_id, full_name, birth_date, relationship.relationship_id, image_upload='')
-        
+        print("***************************", family_member)
+        print("***************************", family_member.family_member_id)
+        print("***************************", family_member.family_id)
+
+        # todo: create a wishlist automatically for each family member
+        create_wishlist = crud.create_wishlist(family_member.family_member_id, family_member.family_id)
+        print('************', create_wishlist)
         
         if family_member:
             return render_template("complete_family.html")
@@ -137,7 +145,7 @@ def view_user_profile():
 @app.route('/family_member_profile/<family_id>')
 def view_family_profile():
     """view a family member's profile page"""
-
+    
     return render_template("family_profile_page.html")
 
 @app.route('/search_for_user')
@@ -145,6 +153,18 @@ def search_for_user():
     """search for a user"""
 
     return render_template("search_users.html")
+
+
+@app.route('/view_family')
+def view_family():
+    #query for all family members in our family members table
+    #that have the same family id as the current user logged in
+
+    family_id = crud.get_familyid_by_user_id(session['user_id'])
+    current_user_family_members = crud.get_family_members(family_id)
+  
+ 
+    return render_template ("view_family.html", current_user_family_members=current_user_family_members)
 
 @app.route('/create_wishlist')
 def create_wishlist():
@@ -157,12 +177,20 @@ def create_wishlist():
     return render_template('login.html')
 
 
-@app.route('/add_to_wishlist/<wishlist_id>')
+@app.route('/add_to_wishlist')   
 def add_to_wishlist():
     """add items to wishlist"""
+    #pass a list of family member objects associated with the current user's familyid
+    
+    return render_template('add_to_wishlist.html')
 
-    return render_template('view_add_to_wishlist.html')
-
+@app.route('/view_wishlist', methods=['POST'])
+def view_wishlist():
+    """view items on wishlist"""
+    item = request.form.get("item")
+    link_to_item = request.form.get("link_to_item")
+    # wishlist_id =
+    return render_template('view_wishlist.html')
 
 @app.route('/upcoming_milestones')
 def view_upcoming_milestones():

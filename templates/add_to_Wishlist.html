@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Welcome to Wishblaster{% endblock %}
+
+{% block body %}
+  <h1>Add to This Wishlist!</h1>
+
+
+  <form action="/view_wishlist" method="POST">
+    Enter the name of the item you want: 
+    <input type="text" name="item">
+    What is the link to the item? 
+    <input type="text" name="link_to_item">
+    <input type="submit"  value="save">
+  </form>
+  
+{% endblock %}

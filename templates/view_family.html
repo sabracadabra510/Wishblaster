@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}View Family Page{% endblock %}
+
+{% block body %}
+  <h1>Family Members </h1>
+  <ul>
+    {% for member in current_user_family_members %}
+      <li>{{ member.full_name }}</li>
+      <li>{{member.members_wishlist}}</li>
+    {% endfor %}
+  </ul>
+ 
+{% endblock %}
+
+
+
+

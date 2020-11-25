@@ -57,10 +57,15 @@ class FamilyMember(db.Model):
     relationship_model = db.relationship("Relationship")
     image_upload =db.Column(db.String)
 
-    #user_id = db.relationship("User")
+    members_wishlist = db.relationship("Wishlist")
+
+    # members_wishlist = db.relationship("Family", 
+    #                                     secondary="wishlists",
+    #                                     backref="family_members")
 
     def __repr__(self):
-        return f'<Family family_id ={self.family_id} full_name={self.full_name}>'
+        return f'<FamilyMember family_member_id={self.family_member_id} family_id ={self.family_id} full_name={self.full_name}>'
+               
 
 class Milestone(db.Model):
     """Family Milestones table."""
@@ -101,7 +106,7 @@ class Wishlist(db.Model):
     family_id = db.Column(db.Integer, db.ForeignKey('family.family_id'))
 
     def __repr__(self):
-        return f'<Wishlists wishlist_id ={self.wishlist_id} wishlist_name ={self.wishlist_name}>'
+        return f'<Wishlists wishlist_id ={self.wishlist_id} family_id ={self.family_id} family_member_id ={self.family_member_id}>'
 
 class Item(db.Model):
     """Items on wishlist table"""

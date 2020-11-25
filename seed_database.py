@@ -59,7 +59,7 @@ for milestone_name in ['Christmas', 'birthday', 'anniversary']:
 wishlists = []
 for family in family_members:
     wishlist_name = family.relationship_model.relationship_name
-    wishlist = crud.create_wishlist(wishlist_name, family.family_id)
+    wishlist = crud.create_wishlist(family.family_member_id, family.family_id)
     wishlists.append(wishlist)
     print(wishlist)
 
