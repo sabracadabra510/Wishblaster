@@ -181,8 +181,16 @@ def create_wishlist():
 def add_to_wishlist():
     """add items to wishlist"""
     #pass a list of family member objects associated with the current user's familyid
+    family_id = crud.get_familyid_by_user_id(session['user_id'])
+    current_user_family_members = crud.get_family_members(family_id)
     
-    return render_template('add_to_wishlist.html')
+    return render_template('add_to_wishlist.html', current_user_family_members=current_user_family_members)
+
+@app.route('/item_added_successfully', methods=['POST'])
+def item_added_successfully():
+
+
+    return render_template('item_added_successfully.html')
 
 @app.route('/view_wishlist', methods=['POST'])
 def view_wishlist():

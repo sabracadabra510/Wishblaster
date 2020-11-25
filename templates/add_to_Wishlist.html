@@ -4,8 +4,16 @@
 {% block body %}
   <h1>Add to This Wishlist!</h1>
 
-
-  <form action="/view_wishlist" method="POST">
+  <form action="/item_added_successfully" method="POST">
+    <select name="add_to_family_member_wishlist">
+ 
+     {% for member in current_user_family_members %}
+ 
+         
+ 
+       <option value={{member.members_wishlist[0].wishlist_id}}>{{ member.full_name }}</option>
+     {% endfor %}
+   </select>
     Enter the name of the item you want: 
     <input type="text" name="item">
     What is the link to the item? 
