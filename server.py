@@ -187,10 +187,13 @@ def add_to_wishlist():
 @app.route('/view_wishlist', methods=['POST'])
 def view_wishlist():
     """view items on wishlist"""
-    item = request.form.get("item")
-    link_to_item = request.form.get("link_to_item")
-    # wishlist_id =
-    return render_template('view_wishlist.html')
+    
+    family_members_wishlist_id = request.form.get("family_members_wishlist_id")
+    wishlist_items = crud.get_items_by_wishlist_id(family_members_wishlist_id)
+    print(wishlist_items)
+    
+   
+    return render_template('view_wishlist.html', wishlist_items=wishlist_items)
 
 @app.route('/upcoming_milestones')
 def view_upcoming_milestones():

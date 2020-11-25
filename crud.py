@@ -86,6 +86,12 @@ def create_item(wishlist_id, item_name, item_link):
 
     return item 
 
+def get_items_by_wishlist_id(family_members_wishlist_id):
+
+    wishlist_items = Item.query.filter_by(wishlist_id=family_members_wishlist_id).all()
+        
+    return wishlist_items
+
 def get_familyid_by_user_id(user_id):
 
     current_user = FamilyMember.query.filter(FamilyMember.user_id==user_id).first()

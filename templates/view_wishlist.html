@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}View Wishlist Items{% endblock %}
+
+{% block body %}_
+  <h1>Wishlist Items </h1>
+  
+    
+  
+  <ul>
+    {% for item in wishlist_items %}
+    <li> {{item.item_name}}</li>
+    <li> {{item.item_link}}</li> 
+    
+  
+    {% endfor %}
+</ul>
+{% endblock %}
+
+
+
+
+<h2>Lists</h2>
+<ul>
+  <li>First item</li>
+  <li>Second item</li>
+</ul>
