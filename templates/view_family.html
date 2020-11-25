@@ -1,15 +1,22 @@
 {% extends 'base.html' %}
 {% block title %}View Family Page{% endblock %}
 
-{% block body %}
+{% block body %}_
   <h1>Family Members </h1>
-  <ul>
+  
+    
+  <form>
+   <select name="family_members_wishlist_id">
+
     {% for member in current_user_family_members %}
-      <li>{{ member.full_name }}</li>
-      <li>{{member.members_wishlist}}</li>
+
+        
+
+      <option value={{member.members_wishlist[0].wishlist_id}}>{{ member.full_name }}</option>
     {% endfor %}
-  </ul>
- 
+  </select>
+  <input type="submit">
+ </form>
 {% endblock %}
 
 
