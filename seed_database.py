@@ -68,7 +68,7 @@ items = []
 
 for wishlist in wishlists:
     item_name = "clothes"
-    item_link = "stuff"
+    item_link = "lululemon.com"
     print(item_name)
     item = crud.create_item(wishlist.wishlist_id, item_name, item_link)
     items.append(item)

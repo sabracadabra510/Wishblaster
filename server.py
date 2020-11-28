@@ -177,12 +177,13 @@ def create_wishlist():
     return render_template('login.html')
 
 
-@app.route('/add_to_wishlist')   
+@app.route('/add_to_wishlist', methods=['GET','POST'])   
 def add_to_wishlist():
     """add items to wishlist"""
     #pass a list of family member objects associated with the current user's familyid
     family_id = crud.get_familyid_by_user_id(session['user_id'])
     current_user_family_members = crud.get_family_members(family_id)
+    item = crud.create_item(wishlist_id, item_name, item_link)
     
     return render_template('add_to_wishlist.html', current_user_family_members=current_user_family_members)
 
@@ -198,6 +199,7 @@ def view_wishlist():
     
     family_members_wishlist_id = request.form.get("family_members_wishlist_id")
     wishlist_items = crud.get_items_by_wishlist_id(family_members_wishlist_id)
+    #item_name = request.form.get()
     print(wishlist_items)
     
    
