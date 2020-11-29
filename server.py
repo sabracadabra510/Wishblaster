@@ -180,10 +180,18 @@ def create_wishlist():
 @app.route('/add_to_wishlist', methods=['GET','POST'])   
 def add_to_wishlist():
     """add items to wishlist"""
-    #pass a list of family member objects associated with the current user's familyid
-    family_id = crud.get_familyid_by_user_id(session['user_id'])
-    current_user_family_members = crud.get_family_members(family_id)
-    item = crud.create_item(wishlist_id, item_name, item_link)
+    #pass a list of family member objects associated with the current user's 
+    
+    if request.method == 'POST':
+        item = request.form.get("item")
+        link_to_item = request.form.get("link_to_item")
+    
+    
+    if request.method == 'GET':
+        family_id = crud.get_familyid_by_user_id(session['user_id'])
+        current_user_family_members = crud.get_family_members(family_id)
+        item = crud.create_item(wishlist_id, item_name, item_link)
+
     
     return render_template('add_to_wishlist.html', current_user_family_members=current_user_family_members)
 
