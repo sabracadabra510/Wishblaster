@@ -182,29 +182,40 @@ def add_to_wishlist():
     """add items to wishlist"""
     #pass a list of family member objects associated with the current user's 
     
-    if request.method == 'POST':
-        item = request.form.get("item")
-        link_to_item = request.form.get("link_to_item")
     
     
+        
     if request.method == 'GET':
         family_id = crud.get_familyid_by_user_id(session['user_id'])
         current_user_family_members = crud.get_family_members(family_id)
-        item = crud.create_item(wishlist_id, item_name, item_link)
-
-    
+       
     return render_template('add_to_wishlist.html', current_user_family_members=current_user_family_members)
 
 @app.route('/item_added_successfully', methods=['POST'])
 def item_added_successfully():
 
+    if request.method == 'POST':
+        item_name = request.form.get("item")
+        print(item_name)
+        item_link = request.form.get("link_to_item")
+        print(item_link)
+        add_to_family_member_wishlist = request.form.get("add_to_family_member_wishlist")
+        print(add_to_family_member_wishlist)
+        wishlist_items = crud.get_items_by_wishlist_id(add_to_family_member_wishlist)
+        print(wishlist_items)
+        
+        
+        if item_name and item_link:
+            crud.create_item(add_to_family_member_wishlist, item_name, item_link)
+
+    
 
     return render_template('item_added_successfully.html')
 
 @app.route('/view_wishlist', methods=['POST'])
 def view_wishlist():
     """view items on wishlist"""
-    
+    family_id = crud.get_familyid_by_user_id(session['user_id'])
     family_members_wishlist_id = request.form.get("family_members_wishlist_id")
     wishlist_items = crud.get_items_by_wishlist_id(family_members_wishlist_id)
     #item_name = request.form.get()

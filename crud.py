@@ -79,7 +79,7 @@ def get_user_by_user_id(user_id):
 
 def create_item(wishlist_id, item_name, item_link):
 
-    item = Item(wishlist_id = wishlist_id, item_name = item_name, item_link= item_link)
+    item = Item(wishlist_id=wishlist_id, item_name = item_name, item_link= item_link)
 
     db.session.add(item)
     db.session.commit()
