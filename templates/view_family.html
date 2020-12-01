@@ -20,9 +20,3 @@
 {% endblock %}
 
 
-in server.py, in the view wishlist route
-request.form.get our value from this form save in variable family members wishlist id
-with that variable, query from your items table (filter by wishlist id)
-create a function in crud.py
-store that list in a variable and pass it to your jinja template
-in jinja, for loop through this variable and print all the items

@@ -119,23 +119,6 @@ def complete_family():
     
 
 
-############################################################
-# in your server: we can make post requests to recieve info from the HTML
-   # get user info, for example 'name'
-# crud.get_user_obj('name')
-# in your crud.py: 
-# def get_user_obj(name):
-    # return User.query.filter(name=name).first() 
-
-# def get_family(user_id):
-    # user = User.query.filter(user_id = user_id) 
-    # return (family = user.family_id)
-# now in your server we have all attributes of the user object
-
-############################################################
-
-
-
 @app.route('/user_profile')
 def view_user_profile():
     """view user's profile page"""
@@ -147,12 +130,6 @@ def view_family_profile():
     """view a family member's profile page"""
     
     return render_template("family_profile_page.html")
-
-@app.route('/search_for_user')
-def search_for_user():
-    """search for a user"""
-
-    return render_template("search_users.html")
 
 
 @app.route('/view_family')
@@ -173,7 +150,6 @@ def create_wishlist():
     user = crud.get_user_by_user_id(session['user_id'])
     print(user)
 
-    # crud.create_wishlist(wishlist_name=user.full_name, family_id=)
     return render_template('login.html')
 
 
@@ -182,9 +158,6 @@ def add_to_wishlist():
     """add items to wishlist"""
     #pass a list of family member objects associated with the current user's 
     
-    
-    
-        
     if request.method == 'GET':
         family_id = crud.get_familyid_by_user_id(session['user_id'])
         current_user_family_members = crud.get_family_members(family_id)
