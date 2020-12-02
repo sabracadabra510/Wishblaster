@@ -17,6 +17,22 @@
   </select>
   <input type="submit">
  </form>
+ 
+ 
+ 
+ <form id="view-list" action="/view_wishlist" method="POST">
+  <select id="person-name" name="family_members_wishlist_id">
+
+   {% for member in current_user_family_members %}
+
+       
+
+     <option value={{member.members_wishlist[0].wishlist_id}}>{{ member.full_name }}</option>
+   {% endfor %}
+ </select>
+ <input type="submit">
+</form>
+<div id="magic"></div>
 {% endblock %}
 
 

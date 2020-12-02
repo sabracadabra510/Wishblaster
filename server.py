@@ -1,5 +1,4 @@
-from flask import Flask
-from flask import (Flask, render_template, request, flash, session,
+from flask import (Flask, jsonify, render_template, request, flash, session,
                    redirect, url_for)
 from model import connect_to_db, User, Milestone, Family, Relationship, Wishlist, Item
 import crud
@@ -197,12 +196,38 @@ def view_wishlist():
    
     return render_template('view_wishlist.html', wishlist_items=wishlist_items)
 
+@app.route('/view_wishlist.json', methods=['POST'])
+def view_wishlist_json():
+    """view items on wishlist"""
+    family_id = crud.get_familyid_by_user_id(session['user_id'])
+    family_members_wishlist_id = request.form.get("family_members_wishlist_id")
+    wishlist_items = crud.get_items_by_wishlist_id(family_members_wishlist_id)
+    #item_name = request.form.get()
+    print("**********************", wishlist_items)
+    print("**************", family_members_wishlist_id, type(family_members_wishlist_id))
+    items_in_wishlist = []
+    
+    for item in wishlist_items:
+        
+        item_dict ={}
+        
+        item_dict['item_name'] = item.item_name
+        item_dict['item_link'] = item.item_link
+        print(item_dict)
+        items_in_wishlist.append(item_dict)
+        
+        
+
+    return jsonify(items_in_wishlist)
+
 @app.route('/upcoming_milestones')
 def view_upcoming_milestones():
     """allows user to view a list of upcoming events"""
     milestones = crud.get_milestones()
     #TODO add proper templating to make this pretty and not objects 
     return render_template("upcoming_milestones.html", milestones = milestones)
+
+
 
 if __name__ == '__main__':
     connect_to_db(app)
