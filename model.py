@@ -18,12 +18,6 @@ class User(db.Model):
     password = db.Column(db.String, nullable=True)
 
 
-    #family_id = db.relationship("Family")
-    # Racine family ID: 6
-
-    #Lucia: user_id = 4
-    # family = User.family_id
-    # brother = User.family_id.relationship_model.relationship_name
 
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email}>'
@@ -59,9 +53,7 @@ class FamilyMember(db.Model):
 
     members_wishlist = db.relationship("Wishlist")
 
-    # members_wishlist = db.relationship("Family", 
-    #                                     secondary="wishlists",
-    #                                     backref="family_members")
+
 
     def __repr__(self):
         return f'<FamilyMember family_member_id={self.family_member_id} family_id ={self.family_id} full_name={self.full_name}>'
@@ -120,7 +112,6 @@ class Item(db.Model):
     item_name = db.Column(db.String)
     item_link = db.Column(db.String)
 
-    #find out what backref stuff goes here 
                                 
     def __repr__(self):
         return f'<Items item_id ={self.item_id} item_name={self.item_name}>'

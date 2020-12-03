@@ -8,6 +8,7 @@ $('#view-list').on('submit', (evt) =>{
         console.log(res);
         for (const item of res) {
             $('#magic').append(item.item_name)
+            $('#magic').append(item.item_link)
         }
       });
 })

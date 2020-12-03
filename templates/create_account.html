@@ -3,16 +3,44 @@
 
 {% block body %}
   <h1>Create User Account</h1>
-
+<!-- <div class="container">
+  <div class="row">
+    <div class="column">
+  </div>
   <form action="/create_account" method="POST">
     What is your name? 
     <input type="text" name="full_name">
     What is your email address?
     <input type="text" name="email">
+  </div>
     Choose a password:
     <input type="text" name="password">
-    Re-enter password:
-    <input type="text" name= "password2">
+    
+    <input type="text" >
     <input type="submit">
   </form>
+</div> -->
+
+
+<form action="/create_account" method="POST">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="name">What is your name?</label>
+      <input type="text" name="full_name" class="form-control" placeholder="Full Name">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="password">What is your email address?</label>
+      <input type="text" name="email" class="form-control" placeholder="Email Address">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Choose a password:</label>
+    <input type="text" name="password" class="form-control" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="password2">Re-enter password:</label>
+    <input type="text" name= "password2" class="form-control" placeholder="Re-enter Password">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 {% endblock %}
