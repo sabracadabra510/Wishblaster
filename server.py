@@ -124,14 +124,14 @@ def view_family():
  
     return render_template ("view_family.html", current_user_family_members=current_user_family_members)
 
-@app.route('/create_wishlist')
-def create_wishlist():
-    """allows user to create a wishlist"""
+# @app.route('/create_wishlist')
+# def create_wishlist():
+#     """allows user to create a wishlist"""
 
-    user = crud.get_user_by_user_id(session['user_id'])
-    print(user)
+#     user = crud.get_user_by_user_id(session['user_id'])
+#     print(user)
 
-    return render_template('login.html')
+#     return render_template('login.html')
 
 
 @app.route('/add_to_wishlist', methods=['GET','POST'])   
