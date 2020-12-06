@@ -2,6 +2,7 @@
 {% block title %}Welcome to Wishblaster{% endblock %}
 
 {% block body %}
+<div class="container center">
   <h1>Add Family Members, Starting with You!</h1>
 
   <form action="/complete_family" method="POST">
@@ -9,6 +10,8 @@
     <input type="text" name="user">
     What is your birthdate?
     <input type="text" name="birth_date">
+  </div>
+  <div class="container center">
     Relationship to User? 
     <select name="relationship_to_user">
         <option value="self">Self</option>
@@ -28,7 +31,7 @@
         <option value="sister in law">Sister in Law</option>
         <option value="brother in law">Brother in Law</option>
      </select> 
-  
+    
 
     <!-- <form action="upload.php" method="POST" enctype="multipart/form-data"></form>
       Select image to upload:
@@ -39,5 +42,5 @@
 
   <input type="submit" value="Save">
   </form>
-  
+</div>
 {% endblock %}
