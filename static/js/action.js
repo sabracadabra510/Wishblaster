@@ -7,8 +7,8 @@ $('#view-list').on('submit', (evt) =>{
     $.post('/view_wishlist.json', formInputs, (res) => {
         console.log(res);
         for (const item of res) {
-            $('#magic').append(item.item_name)
-            $('#magic').append(item.item_link)
+            $('#magic').append(`Item: ${item.item_name}`);
+            $('#magic').append(`      Website Link: ${item.item_link}`);
         }
       });
 })
