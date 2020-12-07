@@ -40,7 +40,10 @@ def view_login_page():
 def show_welcome_page():
     """user welcome page"""
     
-    return render_template("welcome_page.html")
+    user_id = session['user_id']
+    user = crud.get_user_by_user_id(user_id)
+    
+    return render_template("welcome_page.html", user=user)
 
 @app.route('/create_account', methods=['GET', 'POST'])
 def create_user_account():
