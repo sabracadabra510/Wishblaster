@@ -2,10 +2,13 @@
 {% block title %}Item Added{% endblock %}
 
 {% block body %}
+<div class="container center">
   <h1>Item Added Successfully! What Would you Like to Do Next? </h1>
 
-  <ul>
+  <ul id="added">
     <li><a href="/add_to_wishlist">Add Another Item</a></li>
+    <li><a href="/view_wishlist">View A Wishlist</a></li>
     <li><a href="/welcome_page">Go Back to Main Page</a></li>
   </ul>
+</div>
 {% endblock %}

@@ -29,5 +29,13 @@ body{
   #welcome li { 
     list-style: none;
   }
+
+  #complete li {
+      list-style: none;
+  }
+
+  #added {
+      list-style-type: none;
+  }
  
   

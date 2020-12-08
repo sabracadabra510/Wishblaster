@@ -2,13 +2,32 @@
 {% block title %}Welcome to Wishblaster{% endblock %}
 
 {% block body %}
+<div class="container center">
+
   <h1>Please enter your login information. </h1>
 
   <form action="/login" method="POST">
-    Please enter your email address: 
+    <!-- Please enter your email address: 
     <input type="text" name="user_login">
     Please enter your password:
     <input type="text" name="password">
     <input type="submit">
   </form>
+</div> -->
+
+<div class="form-row px-5"> 
+  <label for="login">Please enter your email address:</label>
+  <input type="text" name="user_login" class="form-control">
+</div>
+<div class="form-row px-5">
+  <label for="password">Please enter your password:</label>
+  <input type="text" name= "password" class="form-control">
+</div>
+<div class="form-row px-5">
+<button type="submit" class="btn btn-secondary">Submit</button>
+</div>
+</form>
+
+
+
 {% endblock %}

@@ -2,10 +2,11 @@
 {% block title %}Welcome to Wishblaster{% endblock %}
 
 {% block body %}
+<div class="container center">
   <h1>Add to This Wishlist!</h1>
 
   <form action="/item_added_successfully" method="POST">
-    <select name="add_to_family_member_wishlist">
+    <!-- <select name="add_to_family_member_wishlist">
  
      {% for member in current_user_family_members %}
  
@@ -20,5 +21,38 @@
     <input type="text" name="link_to_item">
     <input type="submit"  value="save">
   </form>
-  
+</div> -->
+</div>
+
+<div class="form-row px-5">
+
+  <select name= "add_to_family_member_wishlist" class="form-control">
+
+    {% for member in current_user_family_members %}
+    <option value={{member.members_wishlist[0].wishlist_id}}>{{ member.full_name }}</option>
+    {% endfor %}  
+     </select> 
+</div>
+
+
+
+
+<div class="form-row px-5">
+  <div class="form-group col-md-6">
+    <label for="item">Enter the name of the item you want:</label>
+    <input type="text" name="item" class="form-control">
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="link">What is the link to the item?</label>
+    <input type="text" name="link_to_item" class="form-control">
+  </div>
+</div>
+
+
+</div>
+<div class="form-row px-5">
+<button type="submit" class="btn btn-secondary">Save</button>
+</div>
+</form>
 {% endblock %}
