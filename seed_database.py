@@ -27,7 +27,7 @@ for user in users:
 
 relationships ={}
 
-for relationship_name in ['self','son','daughter' ,'brother', 'sister', 'mom','dad', 'cousin', 'aunt','uncle', 'grandma', 'grandpa', 'niece', 'nephew', 'sister in law', 'brother in law']:
+for relationship_name in ['self','son','daughter' ,'brother', 'sister', 'mom', 'dad', 'husband', 'wife','cousin', 'aunt','uncle', 'grandma', 'grandpa', 'niece', 'nephew', 'sister in law', 'brother in law']:
     relationship = crud.create_relationship(relationship_name)
     relationships[relationship_name] = relationship
 
