@@ -6,12 +6,13 @@
   <h1>Add Family Members, Starting with You!</h1>
 
   <form action="/complete_family" method="POST">
-    What is your name? 
+    
+    <!-- <!-What is your name? 
     <input type="text" name="user">
     What is your birthdate?
     <input type="text" name="birth_date">
-  </div>
-  <div class="container center">
+  
+  
     Relationship to User? 
     <select name="relationship_to_user">
         <option value="self">Self</option>
@@ -33,16 +34,58 @@
         <option value="sister in law">Sister in Law</option>
         <option value="brother in law">Brother in Law</option>
      </select> 
-    
+     
 
-    <!-- <form action="upload.php" method="POST" enctype="multipart/form-data"></form>
+    <form action="upload.php" method="POST" enctype="multipart/form-data"></form>
       Select image to upload:
       <input type="file" name="fileToUpload" id="fileToUpload">
       <input type="submit" value="Upload Image" name= "submit">
       
-    </form>  -->
+    </form>  
 
   <input type="submit" value="Save">
-  </form>
+  </form> -->
+
 </div>
+
+<div class="form-row px-5">
+  <div class="form-group col-md-6">
+    <label for="name">What is your name?</label>
+    <input type="text" name="user" class="form-control" placeholder="Full Name">
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="password">What is your birthdate?</label>
+    <input type="text" name="birth_date" class="form-control" placeholder="Birthdate">
+  </div>
+</div>
+<div class="form-row px-5">
+  <label for="phone">Relationship to User</label>
+  <select name= "relationship_to_user" class="form-control" placeholder="Relationship to User">
+    <option value="self">Self</option>
+        <option value="dad">Dad</option>
+        <option value="mom">Mom</option>
+        <option value="brother">Brother</option> 
+        <option value="sister">Sister</option>
+        <option value="husband">Husband</option>
+        <option value="wife">Wife</option>
+        <option value="son">Son</option>
+        <option value="daughter">Daughter</option>
+        <option value="cousin">Cousin</option>
+        <option value="uncle">Uncle</option>
+        <option value="aunt">Aunt</option>
+        <option value="grandpa">Grandpa</option> 
+        <option value="grandma">Grandma</option>
+        <option value="niece">Niece</option>
+        <option value="nephew">Nephew</option>
+        <option value="sister in law">Sister in Law</option>
+        <option value="brother in law">Brother in Law</option>
+     </select> 
+</div>
+
+</div>
+<div class="form-row px-5">
+<button type="submit" class="btn btn-secondary">Save</button>
+</div>
+</form>
 {% endblock %}
