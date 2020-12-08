@@ -1,10 +1,13 @@
 body{
     background: url(AdobeStock_383068592.jpeg) no-repeat;
+    opacity: 0.5;
     background-size: cover;
-    height: 700px;
+    height: 800px;
     font-family: "Neucha", sans-serif;
     color: darkblue;
   }
+
+ 
 
   .center {
     margin: auto;
@@ -18,3 +21,10 @@ body{
   #home li {
       list-style-type: none;
   }
+
+  #milestones li{
+      list-style: none;
+  }
+
+ 
+  
