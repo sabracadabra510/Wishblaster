@@ -6,8 +6,10 @@ more like a guessing game as far as when they fall and what gifts to purchase fo
 
 Wishblaster allows the user to create virtual wishlists for each member of their family. Each 
 user can view and add to the wishlists shared within their family. From Grandma to cousin Sonia, 
-users are able to keep track of which milestone comes when and who wants what and where it
+users are able to keep track of which milestone comes when and who wants what and where
 to purchase it from. 
 
 Keep the family milestones fun and stress-free by taking the guesswork out of 
 trying to remember them and what to get people! 
+
+Future plans for this project include updating login/password features to ensure user privacy using the OAUTH API, full integration of Twilio API, and adding an add milestone feature similar to add to wishlist. 
